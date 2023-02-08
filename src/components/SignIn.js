@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { loginApi } from "../api/auth";
 
-const SignIn = () => {
+const SignIn = ({ logIn }) => {
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: ""
     });
 
-    const { email, password }= userInfo;
     const navigate = useNavigate();
+    const { email, password }= userInfo;
 
     const onInputHandler = (e) => {
         const { value, name } = e.target;
