@@ -141,10 +141,14 @@ function TodoItem({ list }){
             ) : (
                 <>
                 <Text isCompleted={list.isCompleted}>{list.todo}</Text>
-                <Btn onClick={() => setToggle((prev)=>!prev)}>
+                <Btn
+                    data-testid="modify-button" 
+                    onClick={() => setToggle((prev)=>!prev)}>
                     <MdEdit />
                 </Btn>
-                <Btn onClick={() => handleDelete(content.id)}>
+                <Btn 
+                    data-testid="delete-button"
+                    onClick={() => handleDelete(content.id)}>
                     <MdDelete />
                 </Btn>
                 </>

@@ -106,6 +106,7 @@ function TodoCreate() {
                 <InsertFormPositioner>
                     <InsertForm onSubmit={onSubmit}>
                         <Input 
+                            data-testid="new-todo-input"
                             autoFocus 
                             placeholder="할 일을 입력하세요"
                             onChange={onChange}
@@ -113,8 +114,10 @@ function TodoCreate() {
                     </InsertForm>
                 </InsertFormPositioner>
             )}
-            <CircleButton onClick={onToggle} open={open}>
-                <MdAdd />
+            <CircleButton 
+              data-testid="new-todo-add-button"
+              onClick={onToggle} open={open}>
+              <MdAdd />
             </CircleButton>
         </>
     );
