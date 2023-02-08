@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem';
+import { useTodoDispatch, useTodoState } from '../ToDoContext';
+import { getTodoApi } from '../api/todo';
+import axios from 'axios';
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -9,8 +13,29 @@ const TodoListBlock = styled.div`
 `;
 
 function TodoList() {
+    const todos = useTodoState();
+    const dispatch = useTodoDispatch();
+
+    useEffect(() => {
+        const getTodoData = () => {
+            getTodoApi()
+            .then((res) => {
+                dispatch({type: "INIT", initTodos: res.data});
+            })
+            .catch((err)=>{
+                console.log(err);
+                throw new Error(err);
+            });
+        };
+        getTodoData();
+    }, []);
+
   return <TodoListBlock>
-    <TodoItem todo="과제하기" isCompleted={false}></TodoItem>
+    <ul>
+        {todos?.map((list) => 
+            <TodoItem key={list.id} list={list}/>
+        )}
+    </ul>
   </TodoListBlock>;
 }
 
