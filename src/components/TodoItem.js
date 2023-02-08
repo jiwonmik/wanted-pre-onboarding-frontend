@@ -1,5 +1,8 @@
+import { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { MdDone, MdDelete } from 'react-icons/md';
+import { MdDone, MdDelete, MdEdit } from 'react-icons/md';
+import { useTodoDispatch } from '../ToDoContext';
+import { deleteTodoApi, updateTodoApi } from '../api/todo';
 
 const Remove = styled.div`
   display: flex;
@@ -11,9 +14,18 @@ const Remove = styled.div`
   &:hover {
     color: #ff6b6b;
   }
-  display: none;
 `;
-
+const Edit = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dee2e6;
+  font-size: 24px;
+  cursor: pointer;
+  &:hover {
+    color: #ff6b6b;
+  }
+`
 const TodoItemBlock = styled.div`
   display: flex;
   align-items: center;
@@ -54,14 +66,87 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ id, isCompleted, todo }){
+
+function TodoItem({ list }){
+
+    const [content, setContent] = useState(list);
+    const [toggle, setToggle] = useState(false);
+    const dispatch = useTodoDispatch();
+    console.log(toggle);
+
+    const handleTodoUpdate = useCallback((content) => {
+        updateTodoApi(content.id, content.todo, content.isCompleted)
+        .then((res) => {
+            dispatch({type: "EDIT", todo: res.data});
+        })
+        .catch((err) => {
+            throw new Error(err);
+        });
+    }, [list, content]
+    );
+    
+    const onCheckClick = () => {
+        setContent({ ...content, isCompleted: !list.isCompleted});
+        handleTodoUpdate({ ...content, isCompleted: !list.isCompleted});
+    };
+
+    const onInputChange = useCallback((e) => {
+        setContent({...content, todo: e.target.value});
+        }, [content]
+    );
+
+    const handleEditComplete = () => {
+        if (!content.todo) {
+            // notify 주기
+            return;
+        }
+        handleTodoUpdate(content);
+        setToggle(false);
+    }
+
+    const handleCancle = () => {
+        setContent({ ...content, todo: list.todo});
+        setToggle(false);
+    }
+
+    const handleDelete = useCallback((id) => {
+        deleteTodoApi(id)
+        .then((res) => {
+            dispatch({type: "DELETE", id});
+        })
+        .catch((err) => {
+            throw new Error(err);
+        });
+        }, [list]
+    );
+
     return (
         <TodoItemBlock>
-            <CheckCircle isCompleted={isCompleted}>{isCompleted && <MdDone/>}</CheckCircle>
-            <Text isCompleted={isCompleted}>{todo}</Text>
-            <Remove>
-                <MdDelete />
-            </Remove>
+            <CheckCircle isCompleted={list.isCompleted} 
+                    onClick={(e) => onCheckClick(e)}>
+                    {list.isCompleted && <MdDone/>}
+            </CheckCircle>
+            {toggle ? (
+                <>
+                    <input
+                        defaultValue={list.todo}
+                        autoFocus
+                        onChange={onInputChange}
+                    />
+                    <button onClick={handleEditComplete}>완료</button>
+                    <button onClick={handleCancle}>취소</button>
+                </>
+            ) : (
+                <>
+                <Text isCompleted={list.isCompleted}>{list.todo}</Text>
+                <Edit onClick={() => setToggle((prev)=>!prev)}>
+                    <MdEdit />
+                </Edit>
+                <Remove onClick={() => handleDelete(content.id)}>
+                    <MdDelete />
+                </Remove>
+                </>
+            )}
         </TodoItemBlock>
     );
 }
