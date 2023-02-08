@@ -1,6 +1,6 @@
 function Todo(){
-    return(
-        <h2>test To DO</h2>
+    return (
+        <h2>ToDo</h2>
     );
 };
 
