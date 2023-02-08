@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
+import { useTodoDispatch } from "../ToDoContext";
+import { createTodoApi } from "../api/todo";
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -77,15 +79,37 @@ const Input = styled.input`
 
 function TodoCreate() {
     const [open, setOpen] = useState(false);
+    const [value, setValue] = useState('');
+
+    const dispatch = useTodoDispatch();
 
     const onToggle = () => setOpen(!open);
+    const onChange = (e) => setValue(e.target.value);
+    
+    const onSubmit = (e) => {
+        e.preventDefault();
+        createTodoApi(value)
+        .then((res) => {
+            setValue('');
+            dispatch({ type: "ADD", todo: res.data });  
+            console.log("New To Do created");
+        })
+        .catch((err)=> {
+            throw new Error(err);
+        }); 
+        setOpen(false);
+    };
 
     return (
         <>
             {open && (
                 <InsertFormPositioner>
-                    <InsertForm>
-                        <Input autoFocus placeholder="할 일을 입력하세요"/>
+                    <InsertForm onSubmit={onSubmit}>
+                        <Input 
+                            autoFocus 
+                            placeholder="할 일을 입력하세요"
+                            onChange={onChange}
+                            value={value}/>
                     </InsertForm>
                 </InsertFormPositioner>
             )}
