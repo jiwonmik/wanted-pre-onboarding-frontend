@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginApi } from "../api/auth";
+import { useUserDispatch } from "../UserContext";
+import { LOGIN_USER } from "../api/types";
 
-const SignIn = ({ logIn }) => {
+const SignIn = () => {
+    const dispatch = useUserDispatch();
+    const navigate = useNavigate();
+
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: ""
     });
 
-    const navigate = useNavigate();
     const { email, password }= userInfo;
 
     const onInputHandler = (e) => {
@@ -23,16 +27,18 @@ const SignIn = ({ logIn }) => {
         e.preventDefault();
         console.log(email,password);
 
-        loginApi(email, password)
-        .then((res) => {
-            console.log("success sign up");
-            localStorage.setItem("access_token", res.data.access_token);
+        let body = {
+            email: email,
+            password: password
+        }
+        loginApi(body)
+        .then((res)=>{
+            dispatch({type: LOGIN_USER, token:res.data.access_token})
+            localStorage.setItem("access_token",res.data.access_token)
             navigate("/todo");
+        }).catch((err)=>{
+            throw new Error(err);
         })
-        .catch((err)=>{
-            console.log("error:", err.response.data.message);
-        });
-
         setUserInfo({
             email: "",
             password: "",

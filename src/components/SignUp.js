@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { signUpApi } from "../api/auth";
+import { Navigate } from "react-router-dom";
 
 const SignUp = () => {
+    const navigate = Navigate
+
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: ""
     });
 
     const { email, password }= userInfo;
-    const navigate = useNavigate();
 
     const onInputHandler = (e) => {
         const { value, name } = e.target;
@@ -22,10 +23,16 @@ const SignUp = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         if (email.includes("@") && password.length >= 8){
-            signUpApi(email, password)
-            .then((response) => {
+            let body = {
+                email: email,
+                password: password
+            }
+            signUpApi(body)
+            .then((res) => {
                 console.log("success sign up");
-                navigate("/todo");
+                navigate("/signin");
+            }).catch((err)=>{
+                throw new Error(err);
             })
         } else{
             console.log("not valid Email or Password");
