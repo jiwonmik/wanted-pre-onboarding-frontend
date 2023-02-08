@@ -1,16 +1,17 @@
 import { createContext, useContext, useReducer } from "react";
+import { ADD, DELETE, EDIT, INIT } from "./api/types";
 
 const initTodos = [];
 
 function todoReducer (state, action) {
     switch(action.type){
-      case "INIT":
+      case INIT:
         return [...action.initTodos];
-      case "ADD":
+      case ADD:
         return [...state, action.todo];
-      case "DELETE":
+      case DELETE:
         return state.filter((task) => task.id !== action.id);
-      case "EDIT":
+      case EDIT:
         return state.map((task) => (task.id === action.todo.id ? { ...action.todo } : task));
       default:
         return state;

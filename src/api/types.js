@@ -1,2 +1,6 @@
 export const LOGIN_USER = "LOGIN_USER"
 export const LOGOUT_USER = "REGISTER_USER"
+export const INIT = "INIT"
+export const ADD = "ADD"
+export const DELETE = "DELETE"
+export const EDIT = "EDIT"
