@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { MdDone, MdDelete, MdEdit } from 'react-icons/md';
+import { MdDone, MdDelete, MdEdit, MdCancel } from 'react-icons/md';
 import { useTodoDispatch } from '../ToDoContext';
 import { deleteTodoApi, updateTodoApi } from '../api/todo';
 
-const Remove = styled.div`
+const Btn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,24 +15,13 @@ const Remove = styled.div`
     color: #ff6b6b;
   }
 `;
-const Edit = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #dee2e6;
-  font-size: 24px;
-  cursor: pointer;
-  &:hover {
-    color: #ff6b6b;
-  }
-`
 const TodoItemBlock = styled.div`
   display: flex;
   align-items: center;
   padding-top: 12px;
   padding-bottom: 12px;
   &:hover {
-    ${Remove} {
+    ${Btn} {
       display: initial;
     }
   }
@@ -64,6 +53,15 @@ const Text = styled.div`
     css`
       color: #ced4da;
     `}
+`;
+const EditInput = styled.div`
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  box-sizing: border-box;
 `;
 
 
@@ -128,23 +126,27 @@ function TodoItem({ list }){
             </CheckCircle>
             {toggle ? (
                 <>
-                    <input
+                    <EditInput as="input"
                         defaultValue={list.todo}
                         autoFocus
                         onChange={onInputChange}
                     />
-                    <button onClick={handleEditComplete}>완료</button>
-                    <button onClick={handleCancle}>취소</button>
+                    <Btn onClick={handleEditComplete}>
+                        <MdDone/>
+                    </Btn>
+                    <Btn onClick={handleCancle}>
+                        <MdCancel/>
+                    </Btn>
                 </>
             ) : (
                 <>
                 <Text isCompleted={list.isCompleted}>{list.todo}</Text>
-                <Edit onClick={() => setToggle((prev)=>!prev)}>
+                <Btn onClick={() => setToggle((prev)=>!prev)}>
                     <MdEdit />
-                </Edit>
-                <Remove onClick={() => handleDelete(content.id)}>
+                </Btn>
+                <Btn onClick={() => handleDelete(content.id)}>
                     <MdDelete />
-                </Remove>
+                </Btn>
                 </>
             )}
         </TodoItemBlock>
