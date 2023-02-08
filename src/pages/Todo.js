@@ -1,6 +1,15 @@
+import TodoHead from "../components/TodoHead";
+import TodoList from "../components/TodoList";
+import TodoCreate from "../components/TodoCreate";
+import { TodoProvider } from "../ToDoContext";
+
 function Todo(){
     return (
-        <h2>ToDo</h2>
+        <TodoProvider>
+          <TodoHead/>
+          <TodoList/>
+          <TodoCreate/>
+        </TodoProvider>
     );
 };
 
