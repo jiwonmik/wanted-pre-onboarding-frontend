@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { LOGIN_USER, LOGOUT_USER } from "./api/types";
+import { LOGIN_USER, LOGOUT_USER } from "../api/types";
 
 function userReducer (state, action) {
     switch(action.type){

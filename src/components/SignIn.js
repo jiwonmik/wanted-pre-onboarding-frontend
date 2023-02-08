@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { loginApi } from "../api/auth";
-import { useUserDispatch } from "../UserContext";
+import { useUserDispatch } from "../context/UserContext";
 import { LOGIN_USER } from "../api/types";
 
 const SignIn = () => {

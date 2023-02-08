@@ -1,7 +1,7 @@
 import Router from "./Routes/Router";
 import { createGlobalStyle } from "styled-components";
 import PageTemplate from "./components/PageTemplate";
-import { UserProvider } from "./UserContext";
+import { UserProvider } from "./context/UserContext";
 
 const GlobalStyle = createGlobalStyle`
   body {

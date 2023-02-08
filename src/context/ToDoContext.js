@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { ADD, DELETE, EDIT, INIT } from "./api/types";
+import { ADD, DELETE, EDIT, INIT } from "../api/types";
 
 const initTodos = [];
 
