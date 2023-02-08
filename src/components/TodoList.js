@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import TodoItem from './TodoItem';
 import { useTodoDispatch, useTodoState } from '../ToDoContext';
 import { getTodoApi } from '../api/todo';
-import axios from 'axios';
 
 const TodoListBlock = styled.div`
   flex: 1;

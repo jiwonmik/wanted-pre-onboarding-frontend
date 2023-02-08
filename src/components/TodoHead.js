@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useTodoDispatch, useTodoState } from '../ToDoContext';
+import { useTodoState } from '../ToDoContext';
 
 const TodoHeadBlock = styled.div`
   padding-top: 48px;
