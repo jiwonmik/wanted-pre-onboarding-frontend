@@ -26,10 +26,13 @@ export const Btn = styled.button`
   width: 250px;  
   font-size: 18px;
   box-sizing: border-box;
-  &:hover{
-    background-color: #20c997;
-    color: white;
+  background-color: #20c997;
+  color: white;
+  &:disabled{
+    background-color: gray;
+    cursor: not-allowed;
   }
+ 
 `;
 export const Input = styled.input`
   padding: 12px;
