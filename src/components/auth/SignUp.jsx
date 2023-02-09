@@ -1,9 +1,11 @@
 import { signUpApi } from "../../api/auth";
-import { Navigate } from "react-router-dom";
-import useSignForm from "./useSignForm";
+import { useNavigate, Link } from "react-router-dom";
+import useSignForm from "../../hooks/useSignForm";
+import { Container, Input, Btn, AuthErrorWrapper } from "../../styles/styles";
+
 
 const SignUp = () => {
-    const navigate = Navigate();
+    const navigate = useNavigate();
     const {
         userInfo,
         handleInput,
@@ -13,7 +15,8 @@ const SignUp = () => {
         passwordWarnList,
       } = useSignForm();
 
-    const onSubmitHandler = (e) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         e.preventDefault();
         let body = {
             email: userInfo.email,
@@ -29,29 +32,35 @@ const SignUp = () => {
     };
 
     return (
-    <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center',
-        width: '100%', height: "100vh", placeItems: 'center',
-        flexDirection: 'column'
-    }}>
-        <form style={{ display: "flex", flexDirection: "column"}}
-            onSubmit={onSubmitHandler}>
-            <input 
-                data-testid="email-input" 
-                name="email" 
-                required=""
-                onChange={handleInput} 
-                placeholder="Email"/>
-            <input 
-                data-testid="password-input"
-                name="password" 
-                required=""
-                onChange={handleInput} 
-                placeholder="Password"/>
-            <button 
-                data-testid="signup-button">회원가입</button>   
-        </form>
-    </div>
+        <Container>
+            <form style={{ display: "flex", flexDirection: "column"}}
+                onSubmit={handleSubmit}>
+                <Input 
+                    data-testid="email-input" 
+                    name="email" 
+                    onChange={handleInput("email")} 
+                    placeholder="Email"/>
+                <Input 
+                    data-testid="password-input" 
+                    name="password" 
+                    onChange={handleInput("password")} 
+                    placeholder="Password"/>
+                <Btn 
+                    data-testid="signin-button"
+                    disabled={!emailIsValid || !passwordIsValid}>회원가입</Btn>   
+            </form>
+            <AuthErrorWrapper>
+                {emailWarnList?.map((item) => (
+                    <div key={item}>{item}</div>
+                ))}
+                {passwordWarnList?.map((item) => (
+                    <div key={item}>{item}</div>
+                ))}
+            </AuthErrorWrapper>
+            <Link to="/signin">
+                Already have account? Sign In.
+            </Link>
+        </Container>
     );
 };
 

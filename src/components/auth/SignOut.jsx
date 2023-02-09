@@ -1,6 +1,17 @@
+import { useUserDispatch } from "../../context/UserContext";
+import { LOGOUT_USER } from "../../api/types";
+import { Btn } from "../../styles/styles";
+
 function SignOut() {
+    const dispatch = useUserDispatch();
+    
+    const onSignOutClick=()=>{
+        dispatch({type: LOGOUT_USER})
+        localStorage.removeItem("access_token");    
+    }
+
     return(
-        <h2>test</h2>
+        <Btn onClick={onSignOutClick}>Sign Out</Btn>            
     );
 };
 

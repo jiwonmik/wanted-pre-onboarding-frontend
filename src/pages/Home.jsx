@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
 import SignIn from "../components/auth/SignIn";
 import { Btn, Container } from "../styles/styles";
+import { Link } from "react-router-dom";
+import SignOut from "../components/auth/SignOut";
+
 
 function Home(){
+
     return (
         <>
-        <Container>
-            <Link to="/todo">
-                <Btn>Go to your TO DO</Btn>
-            </Link>
-        </Container>
-        <SignIn />
+        <Link to="/todo">
+            <Btn>My To Do</Btn>     
+        </Link>
+        <SignOut/>            
+        <SignIn/>
         </>
-        )
+    )
 };
 
 export default Home;

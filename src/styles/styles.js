@@ -56,7 +56,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 200px;
+    height: 300px;
     place-items: center;
     flex-direction: column;
 `;
@@ -71,8 +71,11 @@ export const Btn = styled.button`
   &:hover{
     background-color: aliceblue;
   }
-`
+`;
 
+export const AuthErrorWrapper = styled.div`
+  color: red;
+`
 
 
 
