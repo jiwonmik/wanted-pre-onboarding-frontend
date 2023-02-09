@@ -1,4 +1,24 @@
+import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    background: #e9ecef;
+  }
+`;
+export const HomeBtn = styled.button`
+  margin: 30px 30px 0px 0px;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  width: 90px;  
+  font-size: 18px;
+  box-sizing: border-box;
+  float: right;
+  &:hover{
+    background-color: aliceblue;
+  }
+`
 
 export const Input = styled.input`
   padding: 12px;
@@ -36,7 +56,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 200px;
     place-items: center;
     flex-direction: column;
 `;
@@ -52,6 +72,8 @@ export const Btn = styled.button`
     background-color: aliceblue;
   }
 `
+
+
 
 
 

@@ -1,19 +1,17 @@
 import Router from "./Routes/Router";
-import { createGlobalStyle } from "styled-components";
 import PageTemplate from "./PageTemplate";
 import { UserProvider } from "./context/UserContext";
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background: #e9ecef;
-  }
-`;
+import { GlobalStyle, HomeBtn } from "./styles/styles";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
     <UserProvider>
     <GlobalStyle/>
     <PageTemplate>
+      <Link to="/">
+        <HomeBtn>Home</HomeBtn>
+      </Link>
       <Router />
     </PageTemplate>
     </UserProvider>

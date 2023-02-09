@@ -8,7 +8,7 @@ import { useUserState } from "../context/UserContext";
 function Router(){
     const authState = useUserState();
 
-    return <BrowserRouter>
+    return (
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/signup" element={
@@ -19,7 +19,7 @@ function Router(){
                 !(authState.token) ? <Navigate to="/signin"/> : <Todo/>
             }/>
         </Routes>
-    </BrowserRouter>
+    );
 }
 
 export default Router;
