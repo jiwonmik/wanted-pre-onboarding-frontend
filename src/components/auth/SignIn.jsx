@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUserDispatch } from "../../context/UserContext";
 import { loginApi } from "../../api/auth";
 import { LOGIN_USER } from "../../api/types";
+import { Container, Input, Btn } from "../../styles/styles";
 
 const SignIn = () => {
     const dispatch = useUserDispatch();
@@ -23,7 +24,7 @@ const SignIn = () => {
         });
     };
 
-    const onSubmitHandler = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email,password);
         if (email.includes("@") && password.length >= 8){
@@ -49,12 +50,14 @@ const SignIn = () => {
     };
 
     return (
-        <form style={{ display: "flex", flexDirection: "column"}}
-            onSubmit={onSubmitHandler}>
-            <input data-testid="email-input" name="email" value={email} onChange={onInputHandler} placeholder="Email"/>
-            <input data-testid="password-input" name="password" value={password} onChange={onInputHandler} placeholder="Password"/>
-            <button data-testid="signin-button">로그인</button>   
-        </form>
+        <Container>
+            <form style={{ display: "flex", flexDirection: "column"}}
+                onSubmit={handleSubmit}>
+                <Input data-testid="email-input" name="email" value={email} onChange={onInputHandler} placeholder="Email"/>
+                <Input data-testid="password-input" name="password" value={password} onChange={onInputHandler} placeholder="Password"/>
+                <Btn data-testid="signin-button">로그인</Btn>   
+            </form>
+        </Container>
     );
 }
 

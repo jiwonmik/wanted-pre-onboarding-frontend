@@ -28,8 +28,30 @@ export const AuthForm = styled.form`
   padding-top: 32px;
   padding-right: 32px;
   padding-bottom: 72px;
-
   border-radius: 16px;
 `;
+
+export const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    place-items: center;
+    flex-direction: column;
+`;
+
+export const Btn = styled.button`
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  width: 100%;  
+  font-size: 18px;
+  box-sizing: border-box;
+  &:hover{
+    background-color: aliceblue;
+  }
+`
+
 
 
