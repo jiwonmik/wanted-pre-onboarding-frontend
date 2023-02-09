@@ -1,15 +1,8 @@
 import { useEffect } from 'react';
-import styled from 'styled-components';
-import TodoItem from './TodoItem';
-import { useTodoDispatch, useTodoState } from '../../context/ToDoContext';
-import { getTodoApi } from '../../api/todo';
-
-const TodoListBlock = styled.div`
-  flex: 1;
-  padding: 20px 32px;
-  padding-bottom: 48px;
-  overflow-y: auto;
-`;
+import TodoItem from '../TodoItem/TodoItem';
+import { useTodoDispatch, useTodoState } from '../../../context/ToDoContext';
+import { getTodoApi } from '../../../api/todo';
+import { TodoListBlock } from './styles';
 
 function TodoList() {
     const todos = useTodoState();
@@ -31,11 +24,9 @@ function TodoList() {
 
   return (
     <TodoListBlock>
-        <ul>
-            {todos?.map((list) => 
-                <TodoItem key={list.id} list={list}/>
-            )}
-        </ul>
+        {todos?.map((list) => 
+            <TodoItem key={list.id} list={list}/>
+        )}
     </TodoListBlock>
   );
 }
