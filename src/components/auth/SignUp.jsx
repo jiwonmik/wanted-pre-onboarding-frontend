@@ -1,40 +1,31 @@
-import { useState } from "react";
 import { signUpApi } from "../../api/auth";
 import { Navigate } from "react-router-dom";
+import useSignForm from "./useSignForm";
 
 const SignUp = () => {
     const navigate = Navigate();
-    const [userInfo, setUserInfo] = useState({
-        email: "",
-        password: ""
-    });
-    const { email, password }= userInfo;
-
-    const onInputHandler = (e) => {
-        const { value, name } = e.target;
-        setUserInfo({
-            ...userInfo,
-            [name]: value
-        });
-    };
+    const {
+        userInfo,
+        handleInput,
+        emailIsValid,
+        emailWarnList,
+        passwordIsValid,
+        passwordWarnList,
+      } = useSignForm();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        if (email.includes("@") && password.length >= 8){
-            let body = {
-                email: email,
-                password: password
-            }
-            signUpApi(body)
-            .then((res) => {
-                console.log("success sign up");
-                navigate("/signin");
-            }).catch((err)=>{
-                throw new Error(err);
-            })
-        } else{
-            console.log("not valid Email or Password");
+        let body = {
+            email: userInfo.email,
+            password: userInfo.password
         }
+        signUpApi(body)
+        .then((res) => {
+            console.log("success sign up");
+            navigate("/signin");
+        }).catch((err)=>{
+            throw new Error(err);
+        })
     };
 
     return (
@@ -49,15 +40,13 @@ const SignUp = () => {
                 data-testid="email-input" 
                 name="email" 
                 required=""
-                value={email} 
-                onChange={onInputHandler} 
+                onChange={handleInput} 
                 placeholder="Email"/>
             <input 
                 data-testid="password-input"
                 name="password" 
                 required=""
-                value={password} 
-                onChange={onInputHandler} 
+                onChange={handleInput} 
                 placeholder="Password"/>
             <button 
                 data-testid="signup-button">회원가입</button>   

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import SignIn from "../components/auth/SignIn";
-import { Btn, HomeBtn, Container } from "../styles/styles";
+import { Btn, Container } from "../styles/styles";
 
 function Home(){
     return (
@@ -11,7 +10,7 @@ function Home(){
                 <Btn>Go to your TO DO</Btn>
             </Link>
         </Container>
-            <SignIn />
+        <SignIn />
         </>
         )
 };

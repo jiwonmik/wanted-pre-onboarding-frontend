@@ -1,10 +1,11 @@
+import { UserProvider } from "./context/UserContext";
+import { Link } from "react-router-dom";
 import Router from "./Routes/Router";
 import PageTemplate from "./PageTemplate";
-import { UserProvider } from "./context/UserContext";
 import { GlobalStyle, HomeBtn } from "./styles/styles";
-import { Link } from "react-router-dom";
 
 function App() {
+
   return (
     <UserProvider>
     <GlobalStyle/>
@@ -12,7 +13,7 @@ function App() {
       <Link to="/">
         <HomeBtn>Home</HomeBtn>
       </Link>
-      <Router />
+      <Router/>
     </PageTemplate>
     </UserProvider>
   );

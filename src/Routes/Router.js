@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home"
 import Todo from "../pages/Todo";
 import SignUp from "../components/auth/SignUp";
@@ -7,7 +7,6 @@ import { useUserState } from "../context/UserContext";
 
 function Router(){
     const authState = useUserState();
-
     return (
         <Routes>
             <Route path="/" element={<Home/>} />
