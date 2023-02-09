@@ -1,8 +1,11 @@
 import { useState } from "react";
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
-import { useTodoDispatch } from "../context/ToDoContext";
-import { createTodoApi } from "../api/todo";
+import { useTodoDispatch } from "../../context/ToDoContext";
+import { createTodoApi } from "../../api/todo";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -92,6 +95,9 @@ function TodoCreate() {
         .then((res) => {
             setValue('');
             dispatch({ type: "ADD", todo: res.data });  
+            toast.success("성공", {
+              autoClose: 3000,
+            });
             console.log("New To Do created");
         })
         .catch((err)=> {
@@ -102,23 +108,24 @@ function TodoCreate() {
 
     return (
         <>
-            {open && (
-                <InsertFormPositioner>
-                    <InsertForm onSubmit={onSubmit}>
-                        <Input 
-                            data-testid="new-todo-input"
-                            autoFocus 
-                            placeholder="할 일을 입력하세요"
-                            onChange={onChange}
-                            value={value}/>
-                    </InsertForm>
-                </InsertFormPositioner>
-            )}
-            <CircleButton 
-              data-testid="new-todo-add-button"
-              onClick={onToggle} open={open}>
-              <MdAdd />
-            </CircleButton>
+          {open && (
+              <InsertFormPositioner>
+                  <InsertForm onSubmit={onSubmit}>
+                      <Input 
+                          data-testid="new-todo-input"
+                          autoFocus 
+                          placeholder="할 일을 입력하세요"
+                          onChange={onChange}
+                          value={value}/>
+                  </InsertForm>
+              </InsertFormPositioner>
+          )}
+          <CircleButton 
+            data-testid="new-todo-add-button"
+            onClick={onToggle} open={open}>
+            <MdAdd />
+          </CircleButton>
+          <ToastContainer position="top-right"/>
         </>
     );
 }

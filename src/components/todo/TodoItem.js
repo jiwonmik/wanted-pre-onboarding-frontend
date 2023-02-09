@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete, MdEdit, MdCancel } from 'react-icons/md';
-import { useTodoDispatch } from '../context/ToDoContext';
-import { deleteTodoApi, updateTodoApi } from '../api/todo';
+import { useTodoDispatch } from '../../context/ToDoContext';
+import { deleteTodoApi, updateTodoApi } from '../../api/todo';
 
 const Btn = styled.div`
   display: flex;

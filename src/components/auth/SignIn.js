@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { loginApi } from "../api/auth";
-import { useUserDispatch } from "../context/UserContext";
-import { LOGIN_USER } from "../api/types";
+import { useUserDispatch } from "../../context/UserContext";
+import { loginApi } from "../../api/auth";
+import { LOGIN_USER } from "../../api/types";
 
 const SignIn = () => {
     const dispatch = useUserDispatch();
@@ -26,19 +26,22 @@ const SignIn = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         console.log(email,password);
-
-        let body = {
-            email: email,
-            password: password
+        if (email.includes("@") && password.length >= 8){
+            let body = {
+                email: email,
+                password: password
+            }
+            loginApi(body)
+            .then((res)=>{
+                dispatch({type: LOGIN_USER, token:res.data.access_token})
+                localStorage.setItem("access_token",res.data.access_token)
+                navigate("/todo");
+            }).catch((err)=>{
+                throw new Error(err);
+            })
+        } else{
+            console.log("not valid Email or Password");
         }
-        loginApi(body)
-        .then((res)=>{
-            dispatch({type: LOGIN_USER, token:res.data.access_token})
-            localStorage.setItem("access_token",res.data.access_token)
-            navigate("/todo");
-        }).catch((err)=>{
-            throw new Error(err);
-        })
         setUserInfo({
             email: "",
             password: "",

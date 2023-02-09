@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home"
 import Todo from "../pages/Todo";
-import SignUp from "../components/SignUp";
-import SignIn from "../components/SignIn";
+import SignUp from "../components/auth/SignUp";
+import SignIn from "../components/auth/SignIn";
 import { useUserState } from "../context/UserContext";
 
 function Router(){

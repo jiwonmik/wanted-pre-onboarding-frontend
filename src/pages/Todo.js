@@ -1,6 +1,6 @@
-import TodoHead from "../components/TodoHead";
-import TodoList from "../components/TodoList";
-import TodoCreate from "../components/TodoCreate";
+import TodoHead from "../components/todo/TodoHead";
+import TodoList from "../components/todo/TodoList";
+import TodoCreate from "../components/todo/TodoCreate";
 import { TodoProvider } from "../context/ToDoContext";
 
 function Todo(){
