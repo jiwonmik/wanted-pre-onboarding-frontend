@@ -49,27 +49,12 @@ const SignIn = () => {
     };
 
     return (
-        <>
-        <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center',
-            width: '100%', height: "100vh", placeItems: 'center',
-            flexDirection: 'column'
-        }}>
-            <div style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                width: '100%', height: "100px", placeItems: 'center',
-                flexDirection: 'column'
-            }}>
-            <form style={{ display: "flex", flexDirection: "column"}}
-                onSubmit={onSubmitHandler}>
-                <input data-testid="email-input" name="email" value={email} onChange={onInputHandler} placeholder="Email"/>
-                <input data-testid="password-input" name="password" value={password} onChange={onInputHandler} placeholder="Password"/>
-                <button data-testid="signin-button">로그인</button>   
-            </form>
-            </div>
-            <Link to={"/signup"}>Create an account.</Link>
-        </div>
-        </>
+        <form style={{ display: "flex", flexDirection: "column"}}
+            onSubmit={onSubmitHandler}>
+            <input data-testid="email-input" name="email" value={email} onChange={onInputHandler} placeholder="Email"/>
+            <input data-testid="password-input" name="password" value={password} onChange={onInputHandler} placeholder="Password"/>
+            <button data-testid="signin-button">로그인</button>   
+        </form>
     );
 }
 

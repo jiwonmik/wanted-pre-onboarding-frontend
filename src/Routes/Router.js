@@ -12,13 +12,11 @@ function Router(){
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/signup" element={
-                !(authState.token) ? 
-                <SignUp/> : <Navigate to="/todo"/>}/>
-            <Route path="/signin" element={!(authState.token) ? 
-                <SignIn/> : <Navigate to="/todo"/>}/>
+                !(authState.token) ? <SignUp/> : <Navigate to="/todo"/>}/>
+            <Route path="/signin" element={
+                !(authState.token) ? <SignIn/> : <Navigate to="/todo"/>}/>
             <Route path="/todo" element={
-                !(authState.token) ? 
-                (<Navigate to="/signin"/>) : <Todo/>
+                !(authState.token) ? <Navigate to="/signin"/> : <Todo/>
             }/>
         </Routes>
     </BrowserRouter>
