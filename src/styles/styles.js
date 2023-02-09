@@ -26,13 +26,15 @@ export const Btn = styled.button`
   width: 250px;  
   font-size: 18px;
   box-sizing: border-box;
-  background-color: #20c997;
+  background-color: #aaf2dd;
   color: white;
   &:disabled{
     background-color: gray;
     cursor: not-allowed;
   }
- 
+ &:hover{
+  background-color: #20c997;
+ }
 `;
 export const Input = styled.input`
   padding: 12px;
