@@ -6,17 +6,17 @@ import SignIn from "../components/auth/SignIn";
 import { useUserState } from "../context/UserContext";
 
 function Router(){
-    const authState = useUserState();
+    const isLoggedIn = useUserState();
     return (
         <>
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/signup" element={
-                !(authState.token) ? <SignUp/> : <Navigate to="/todo"/>}/>
+                !(isLoggedIn.token) ? <SignUp/> : <Navigate to="/todo"/>}/>
             <Route path="/signin" element={
-                !(authState.token) ? <SignIn/> : <Navigate to="/todo"/>}/>
+                !(isLoggedIn.token) ? <SignIn/> : <Navigate to="/todo"/>}/>
             <Route path="/todo" element={
-                !(authState.token) ? <Navigate to="/signin"/> : <Todo/>
+                !(isLoggedIn.token) ? <Navigate to="/signin"/> : <Todo/>
             }/>
         </Routes>        
         </>

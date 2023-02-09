@@ -9,7 +9,6 @@ function TodoItem({ list }){
     const [content, setContent] = useState(list);
     const [toggle, setToggle] = useState(false);
     const dispatch = useTodoDispatch();
-    console.log(toggle);
 
     const handleTodoUpdate = useCallback((content) => {
         updateTodoApi(content.id, content.todo, content.isCompleted)

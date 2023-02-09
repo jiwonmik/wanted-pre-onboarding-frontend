@@ -16,10 +16,21 @@ export const HomeBtn = styled.button`
   box-sizing: border-box;
   float: right;
   &:hover{
-    background-color: aliceblue;
+    background-color: #20c997;
   }
 `
-
+export const Btn = styled.button`
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  width: 250px;  
+  font-size: 18px;
+  box-sizing: border-box;
+  &:hover{
+    background-color: #20c997;
+    color: white;
+  }
+`;
 export const Input = styled.input`
   padding: 12px;
   border-radius: 4px;
@@ -55,22 +66,10 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 300px;
+    height: 100vh;
+    width: 100vw;
     place-items: center;
     flex-direction: column;
-`;
-
-export const Btn = styled.button`
-  padding: 12px;
-  border-radius: 4px;
-  border: 1px solid #dee2e6;
-  width: 100%;  
-  font-size: 18px;
-  box-sizing: border-box;
-  &:hover{
-    background-color: aliceblue;
-  }
 `;
 
 export const AuthErrorWrapper = styled.div`

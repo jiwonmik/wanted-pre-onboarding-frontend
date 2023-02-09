@@ -30,6 +30,7 @@ const SignIn = () => {
             localStorage.setItem("access_token",res.data.access_token)
             navigate("/todo");
         }).catch((err)=>{
+            console.log(err);
             throw new Error(err);
         })
     };

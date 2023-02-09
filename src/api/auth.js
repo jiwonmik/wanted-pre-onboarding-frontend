@@ -7,7 +7,3 @@ export const signUpApi = async (dataToSubmit) => {
 export const loginApi = async (dataToSubmit) => {
     return apiClient.post("/auth/signin", dataToSubmit);
 };
-
-// export const logoutApi = async() => {
-
-// }
