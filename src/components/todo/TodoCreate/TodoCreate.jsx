@@ -3,6 +3,9 @@ import { MdAdd } from 'react-icons/md';
 import { useTodoDispatch } from "../../../context/ToDoContext";
 import { createTodoApi } from "../../../api/todo";
 import { InsertForm, InsertFormPositioner, CircleButton, Input } from './styles'
+import { ToastContainer } from "react-toastify";
+import notice from "../../Toast";
+import 'react-toastify/dist/ReactToastify.css';
 
 function TodoCreate() {
     const [open, setOpen] = useState(false);
@@ -17,6 +20,7 @@ function TodoCreate() {
         e.preventDefault();
         createTodoApi(value)
         .then((res) => {
+            notice("success", "할 일 추가 완료");
             setValue('');
             dispatch({ type: "ADD", todo: res.data });  
             console.log("New To Do created");
@@ -35,7 +39,7 @@ function TodoCreate() {
                       <Input 
                           data-testid="new-todo-input"
                           autoFocus 
-                          placeholder="할 일을 입력하세요"
+                          placeholder="할 일을 입력하고 Enter를 누르세요."
                           onChange={onChange}
                           value={value}/>
                   </InsertForm>
@@ -46,6 +50,7 @@ function TodoCreate() {
             onClick={onToggle} open={open}>
             <MdAdd />
           </CircleButton>
+          <ToastContainer position="top-right"/>
         </>
     );
 }

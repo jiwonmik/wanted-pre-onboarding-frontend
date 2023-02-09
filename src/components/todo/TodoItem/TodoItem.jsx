@@ -3,6 +3,8 @@ import { MdDone, MdDelete, MdEdit, MdCancel } from 'react-icons/md';
 import { useTodoDispatch } from '../../../context/ToDoContext';
 import { deleteTodoApi, updateTodoApi } from '../../../api/todo';
 import { TodoItemBlock,CheckCircle,EditInput,Btn, Text } from './styles';
+import notice from '../../Toast';
+import { ToastContainer } from 'react-toastify';
 
 function TodoItem({ list }){
 
@@ -34,6 +36,7 @@ function TodoItem({ list }){
     const handleEditComplete = () => {
         if (!content.todo) {
             // notify 주기
+            notice("error", "할 일을 입력해주세요.");
             return;
         }
         handleTodoUpdate(content);
@@ -57,6 +60,8 @@ function TodoItem({ list }){
     );
 
     return (
+        <>
+        <ToastContainer position='top-right'/>
         <TodoItemBlock>
             <CheckCircle isCompleted={list.isCompleted} 
                     onClick={(e) => onCheckClick(e)}>
@@ -92,6 +97,8 @@ function TodoItem({ list }){
                 </>
             )}
         </TodoItemBlock>
+        </>
+
     );
 }
 
