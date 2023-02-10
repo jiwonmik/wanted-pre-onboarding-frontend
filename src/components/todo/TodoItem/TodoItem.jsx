@@ -75,10 +75,14 @@ function TodoItem({ list }){
                         autoFocus
                         onChange={onInputChange}
                     />
-                    <Btn onClick={handleEditComplete}>
+                    <Btn 
+                        data-testid="submit-button"
+                        onClick={handleEditComplete}>
                         <MdDone/>
                     </Btn>
-                    <Btn onClick={handleCancle}>
+                    <Btn 
+                        data-testid="cancel-button"
+                        onClick={handleCancle}>
                         <MdCancel/>
                     </Btn>
                 </>
