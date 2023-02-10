@@ -11,7 +11,7 @@ cursor: pointer;
   color: #ff6b6b;
 }
 `;
-export const TodoItemBlock = styled.div`
+export const TodoItemBlock = styled.li`
 display: flex;
 align-items: center;
 padding-top: 12px;
