@@ -70,6 +70,7 @@ function TodoItem({ list }){
             {toggle ? (
                 <>
                     <EditInput as="input"
+                        data-testid="modify-input"
                         defaultValue={list.todo}
                         autoFocus
                         onChange={onInputChange}
