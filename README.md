@@ -11,6 +11,7 @@
 ### ⌨️ 1. 로그인/ 회원가입
 ---
 ![wanted Register_and_Login](https://user-images.githubusercontent.com/59993029/218042720-3ae8d55d-e13c-4a72-b332-4773916e1d40.gif)
+
 ☑️ Assignment 1
 - 회원가입 및 로그인 페이지에 이메일과 비밀번호 유효성 검사기능 구현
     - 이메일 조건: `@` 포함
