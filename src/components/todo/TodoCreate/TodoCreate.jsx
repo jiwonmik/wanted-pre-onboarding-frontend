@@ -2,17 +2,18 @@ import { useState } from "react";
 import { MdAdd } from 'react-icons/md';
 import { useTodoDispatch } from "../../../context/ToDoContext";
 import { createTodoApi } from "../../../api/todo";
-import { InsertForm, InsertFormPositioner, CircleButton, Input } from './styles'
+import { InsertForm, InsertFormPositioner, CircleButton, Input, AddBtn} from './styles'
 import { ToastContainer } from "react-toastify";
 import notice from "../../Toast";
 import 'react-toastify/dist/ReactToastify.css';
 
 function TodoCreate() {
+    
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState('');
 
     const dispatch = useTodoDispatch();
-
+    
     const onToggle = () => setOpen(!open);
     const onChange = (e) => setValue(e.target.value);
     
@@ -42,6 +43,7 @@ function TodoCreate() {
                           placeholder="할 일을 입력하고 Enter를 누르세요."
                           onChange={onChange}
                           value={value}/>
+                      <AddBtn disabled={!value}>Add</AddBtn>
                   </InsertForm>
               </InsertFormPositioner>
           )}
