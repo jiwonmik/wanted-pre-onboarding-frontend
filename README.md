@@ -10,7 +10,7 @@
 
 ### ⌨️ 1. 로그인/ 회원가입
 ---
-![wanted Register_and_Login](https://user-images.githubusercontent.com/59993029/218042720-3ae8d55d-e13c-4a72-b332-4773916e1d40.gif)
+![wanted Register_and_Login](https://user-images.githubusercontent.com/59993029/220260309-bb56c8e2-c259-4b55-8a4f-257e38b9c675.gif)
 
 ☑️ Assignment 1
 - 회원가입 및 로그인 페이지에 이메일과 비밀번호 유효성 검사기능 구현
@@ -31,8 +31,7 @@
     - 로컬 스토리지에 토큰이 **없는** 상태로 `/todo` 페이지에 접속 => `/signin` 경로로 리다이렉트
 ---
 ## ⌨️ 2. TODO LIST
-![wanted Add_TodoList](https://user-images.githubusercontent.com/59993029/218043285-84f91ce2-d5f2-46f5-b6ca-8bdfa449bb43.gif)
-
+![wanted Add_TodoList](https://user-images.githubusercontent.com/59993029/220260932-4ca5dc98-af46-4ac9-93a6-f5af2c7fb5cf.gif)
 
 ☑️ Assignment 5
 - `/todo` 경로에 접속하면 투두 리스트의 목록 보여주기
@@ -41,7 +40,7 @@
 ☑️ Assignment 6
 - 리스트 페이지에 새로운 TODO 입력할 수 있는 input과 추가 button 만들기
 
-![wanted Edit_Remove_TodoList](https://user-images.githubusercontent.com/59993029/218029251-8cf5db92-326d-4f5e-b461-0041066d2182.gif)
+![wanted Edit_Remove_TodoList](https://user-images.githubusercontent.com/59993029/220260336-f288dedf-4b06-49fa-9d75-31b99821bdd0.gif)
 
 ☑️ Assignment 7
 - TODO 체크박스를 통해 완료 여부 수정
